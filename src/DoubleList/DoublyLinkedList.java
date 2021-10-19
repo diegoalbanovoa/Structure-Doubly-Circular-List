@@ -9,9 +9,9 @@ package DoubleList;
  * @param <T>
  */
 public class DoublyLinkedList<T> {
-	protected Node<T> head; // el primer nodo de la lista
-	protected Node<T> tail; // el último nodo de la lista
-	protected Node<T> location; // verdadero si se encuentra el elemento, de lo contrario falso
+	protected NodeDoublyLinkedList<T> head; // el primer nodo de la lista
+	protected NodeDoublyLinkedList<T> tail; // el último nodo de la lista
+	protected NodeDoublyLinkedList<T> location; // verdadero si se encuentra el elemento, de lo contrario falso
 	protected int numElements; // Número de elementos en esta lista
 	protected boolean found; // verdadero si se encuentra el elemento, de lo contrario falso
 
@@ -143,7 +143,7 @@ public class DoublyLinkedList<T> {
 	 * @param data Data
 	 */
 	public void addElement(T data) {
-		Node<T> newNode = new Node<T>(data);// Referencia al nuevo nodo que se agrega
+		NodeDoublyLinkedList<T> newNode = new NodeDoublyLinkedList<T>(data);// Referencia al nuevo nodo que se agrega
 
 		if (isEmpty()) // Añadiendo a una lista vacía
 		{
@@ -168,7 +168,7 @@ public class DoublyLinkedList<T> {
 	 * @param data Data
 	 */
 	public void addFront(T data) {
-		Node<T> newNode = new Node<T>(data);// Referencia al nuevo nodo que se agrega
+		NodeDoublyLinkedList<T> newNode = new NodeDoublyLinkedList<T>(data);// Referencia al nuevo nodo que se agrega
 
 		if (isEmpty()) // Añadiendo a una lista vacía
 		{
@@ -195,7 +195,7 @@ public class DoublyLinkedList<T> {
 	 * @param data Data
 	 */
 	public void addBack(T data) {
-		Node<T> newNode = new Node<T>(data); // Referencia al nuevo nodo que se agrega
+		NodeDoublyLinkedList<T> newNode = new NodeDoublyLinkedList<T>(data); // Referencia al nuevo nodo que se agrega
 
 		if (isEmpty()) // Añadiendo a una lista vacía
 		{
@@ -222,7 +222,7 @@ public class DoublyLinkedList<T> {
 	 * @param position Posicion
 	 */
 	public void addAtPosition(T data, int position) {
-		Node<T> newNode = new Node<T>(data);
+		NodeDoublyLinkedList<T> newNode = new NodeDoublyLinkedList<T>(data);
 
 		if (isEmpty()) {
 			// agregar elemento a una lista vacía
@@ -377,7 +377,7 @@ public class DoublyLinkedList<T> {
 	public String ShowList() {
 		String item = "List: [ ";
 
-		Node<T> current = head;
+		NodeDoublyLinkedList<T> current = head;
 
 		if (!isEmpty()) {
 
@@ -403,7 +403,7 @@ public class DoublyLinkedList<T> {
 
 		String item = "List: [ ";
 
-		Node<T> current = tail;
+		NodeDoublyLinkedList<T> current = tail;
 
 		if (!isEmpty()) {
 			do {
