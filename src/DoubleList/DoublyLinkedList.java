@@ -9,14 +9,14 @@ package DoubleList;
  * @param <T>
  */
 public class DoublyLinkedList<T> {
-	protected Node<T> head; // the first node of the list
-	protected Node<T> tail; // the last node of the list
-	protected Node<T> location; // true if element found, else false
-	protected int numElements; // Number of elements in this list
-	protected boolean found; // true if element found, else false
+	protected Node<T> head; // el primer nodo de la lista
+	protected Node<T> tail; // el último nodo de la lista
+	protected Node<T> location; // verdadero si se encuentra el elemento, de lo contrario falso
+	protected int numElements; // Número de elementos en esta lista
+	protected boolean found; // verdadero si se encuentra el elemento, de lo contrario falso
 
 	/**
-	 * default constructor
+	 * Constructor predeterminado
 	 */
 	public DoublyLinkedList() {
 		head = null;
@@ -26,33 +26,41 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * @return true if list is empty, else false
+	 * <h1>Metodo isEmpty</h1><br>
+	 * Metodo encargado de si la lista esta vacia
+	 * 
+	 * @return Es <code>True</code> si la lista está vacía, de lo contrario es
+	 *         <code>False</code>
 	 */
 	public boolean isEmpty() {
 		return (head == null);
 	}
 
 	/**
-	 * @return Determines the number of elements on this list
+	 * <h1>Metodo size</h1><br>
+	 * Metodo encargado de determina el número de elementos de esta lista.
+	 * 
+	 * @return numero de elementos de la lista.
 	 */
 	public int size() {
 		return numElements;
 	}
 
 	/**
-	 * Searches list for an occurrence of an element. If successful, sets instance
-	 * variables found to true, location to node containing the element, and
-	 * previous to the node that links to location. If not successful, sets found to
-	 * false.
+	 * <h1>Metodo find</h1><br>
+	 * Busca en la lista una aparición de un elemento. Si tiene éxito, establece la
+	 * instancia variables encontradas como verdaderas, ubicación al nodo que
+	 * contiene el elemento, y anterior al nodo que enlaza con la ubicación. Si no
+	 * tiene éxito, los conjuntos encontrados falso.
 	 * 
-	 * @param target
+	 * @param target El elemento que se busca
 	 */
 	protected void find(T target) {
 		location = head;
 		found = false;
 		if (!isEmpty()) {
 			do {
-				if (location.getData().equals(target)) // if they match
+				if (location.getData().equals(target)) // si coinciden
 				{
 					found = true;
 					return;
@@ -65,8 +73,12 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * @param element
-	 * @return true if this list contains an element e such that
+	 * <h1>Metodo contains</h1><br>
+	 * 
+	 * Método encargado de buscar si un elemento está en la lista
+	 * 
+	 * @param element El elemneto buscado
+	 * @return verdadero si esta lista contiene un elemento e tal que
 	 */
 	public boolean contains(T element) {
 		find(element);
@@ -74,9 +86,10 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * finds position in this list Assumes Zero based indexing
+	 * <h1>Metodo findPosition</h1><br>
+	 * buscar posición en esta lista Asume indexación basada en cero
 	 * 
-	 * @param position
+	 * @param position Posicion del elemento
 	 */
 	protected void findPosition(int position) {
 		int start = 0;
@@ -96,11 +109,17 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * @param data
-	 * @return an element e from this list such if no such element exists, returns
-	 *         null.
+	 * <h1>Metodo searchElement</h1><br>
+	 * 
+	 * Método encargado de buscar un elemento en la lista valida si el elemento
+	 * esta, y en llegado caso de estar se retorna la data de este elemento y en el
+	 * caso de no estar se retorna null
+	 * 
+	 * @param data elemento
+	 * @return un elemento e de esta lista, tal si no existe tal elemento, devuelve
+	 *         nulo.
 	 */
-	public T get(T data) {
+	public T searchElement(T data) {
 		find(data);
 		if (found)
 			return location.getData();
@@ -109,28 +128,30 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * Initializes current position for an iteration through this list, to the first
-	 * element on this list.
+	 * <h1>Metodo reset</h1><br>
+	 * Método encargado de inicializa la posición actual para una iteración a través
+	 * de esta lista, a la primera elemento en esta lista.
 	 */
 	public void reset() {
 		location = head;
 	}
 
 	/**
-	 * Adds element to this list.
+	 * <h1>Metodo addElement</h1><br>
+	 * Método encargado de agrega un elemento a esta lista.
 	 * 
-	 * @param data
+	 * @param data Data
 	 */
-	public void add(T data) {
-		Node<T> newNode = new Node<T>(data); // Reference to the new node being added
+	public void addElement(T data) {
+		Node<T> newNode = new Node<T>(data);// Referencia al nuevo nodo que se agrega
 
-		if (isEmpty()) // Adding into an empty list
+		if (isEmpty()) // Añadiendo a una lista vacía
 		{
 			head = newNode;
 			tail = newNode;
 			head.setPrevious(tail);
 			tail.setNext(head);
-		} else // Adding into a non-empty list
+		} else // Agregar a una lista no vacía
 		{
 			tail.setNext(newNode);
 			newNode.setPrevious(tail);
@@ -141,20 +162,21 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * adds new element to the front of the list
+	 * <h1>Metodo addFront</h1><br>
+	 * Método encargado de agrega un nuevo elemento al principio de la lista
 	 * 
-	 * @param data
+	 * @param data Data
 	 */
 	public void addFront(T data) {
-		Node<T> newNode = new Node<T>(data); // Reference to the new node being added
+		Node<T> newNode = new Node<T>(data);// Referencia al nuevo nodo que se agrega
 
-		if (isEmpty()) // Adding into an empty list
+		if (isEmpty()) // Añadiendo a una lista vacía
 		{
 			head = newNode;
 			tail = newNode;
 			head.setPrevious(tail);
 			tail.setNext(head);
-		} else // Adding into a non-empty list
+		} else // Agregar a una lista no vacía
 		{
 			newNode.setNext(head);
 			head.setPrevious(newNode);
@@ -167,14 +189,15 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * adds new element to the back of the list
+	 * <h1>Metodo addBack</h1><br>
+	 * Método encargado de agrega un nuevo elemento al final de la lista
 	 * 
-	 * @param data
+	 * @param data Data
 	 */
 	public void addBack(T data) {
-		Node<T> newNode = new Node<T>(data); // Reference to the new node being added
+		Node<T> newNode = new Node<T>(data); // Referencia al nuevo nodo que se agrega
 
-		if (isEmpty()) // Adding into an empty list
+		if (isEmpty()) // Añadiendo a una lista vacía
 		{
 			head = newNode;
 			tail = newNode;
@@ -192,23 +215,24 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * adds new element to the specified position
+	 * <h1>Metodo addAtPosition</h1><br>
+	 * Método encargado de agrega un nuevo elemento a la posición especificada
 	 * 
-	 * @param data
-	 * @param position
+	 * @param data     Data
+	 * @param position Posicion
 	 */
 	public void addAtPosition(T data, int position) {
 		Node<T> newNode = new Node<T>(data);
 
 		if (isEmpty()) {
-			// add element to an empty list
+			// agregar elemento a una lista vacía
 			head = newNode;
 			tail = newNode;
 			head.setPrevious(tail);
 			tail.setNext(head);
 
 		} else if (position <= 0) {
-			// insert at front of the list
+			// insertar al principio de la lista
 			newNode.setNext(head);
 			head.setPrevious(newNode);
 			head = newNode;
@@ -216,20 +240,20 @@ public class DoublyLinkedList<T> {
 			tail.setNext(head);
 
 		} else if (position >= size()) {
-			// if position does not exist, perform add at the most efficient
-			// position for circular doubly linked list, the most efficient position is
-			// at the end.
+			// si la posición no existe, realice la adición de la forma más eficiente
+			// posición para lista circular doblemente enlazada, la posición más eficiente
+			// es al final.
 			tail.setNext(newNode);
 			newNode.setPrevious(tail);
 			tail = newNode;
 			tail.setNext(head);
 
 		} else {
-			/* General Case */
-			// determine location where to perform insert
+			/* Caso general */
+			// determina la ubicación donde realizar la inserción
 			findPosition(position);
 
-			// inserts the elements to the specified position
+			// inserta los elementos en la posición especificada
 			newNode.setPrevious(location.getPrevious());
 			newNode.setNext(location);
 			location.getPrevious().setNext(newNode);
@@ -240,33 +264,35 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * Removes an element e from this list such that e.equals(element)
+	 * <h1>Metodo remove</h1><br>
+	 * Método encargado de elimina un elemento e de esta lista tal que e.equals
+	 * (elemento)
 	 * 
-	 * @param element
-	 * @return true; if no such element exists, returns false
+	 * @param element Elemento
+	 * @return <code>True</code>; si no existe tal elemento , devuelve
+	 *         <code>False</code>
 	 */
 	public boolean remove(T element) {
 		find(element);
 		if (found) {
-			if (location == head && size() == 1) // removes the only existing element
-													// empties the list
+			if (location == head && size() == 1) // elimina el único elemento existente vacía la lista
 			{
 				head = null;
 				tail = null;
 
-			} else if (location == head) // removes first node
+			} else if (location == head) // elimina el primer nodo
 			{
 				head = head.getNext();
 				head.setPrevious(tail);
 				tail.setNext(head);
 
-			} else if (location == tail) // removes last node
+			} else if (location == tail) // elimina el último nodo
 			{
 
 				tail = tail.getPrevious();
 				tail.setNext(head);
 				head.setPrevious(tail);
-			} else { // removes node at location
+			} else { // elimina el nodo en la ubicación
 				location.getPrevious().setNext(location.getNext());
 				location.getNext().setPrevious(location.getPrevious());
 			}
@@ -276,16 +302,17 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * removes the first element in the list
+	 * <h1>Metodo removeFront</h1><br>
+	 * Método encargado de elimina el primer elemento de la lista
 	 */
 	public void removeFront() {
 
 		if (!isEmpty()) {
 
-			if (head.getNext() == head) { // if the first element is the only element in the list, //it empties the list
+			if (head.getNext() == head) { // si el primer elemento es el único elemento de la lista,se vacía la lista
 				head = null;
 				tail = null;
-			} else { // removes the first element
+			} else { // elimina el primer elemento
 				head = head.getNext();
 				head.setPrevious(tail);
 				tail.setNext(head);
@@ -295,17 +322,17 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * removes the last element in this list
+	 * <h1>Metodo removeBack</h1><br>
+	 * Método encargado de elimina el último elemento de esta lista
 	 */
 	public void removeBack() {
 
 		if (!isEmpty()) {
 
-			if (head.getNext() == head) { // if the last element is the only element in the list,
-				// it empties the list
+			if (head.getNext() == head) { // si el último elemento es el único elemento de la lista,se vacía la lista
 				head = null;
 				tail = null;
-			} else { // removes the last element
+			} else { // elimina el último elemento
 				tail = tail.getPrevious();
 				tail.setNext(head);
 				head.setPrevious(tail);
@@ -315,12 +342,13 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * removes the element in the specified position
+	 * <h1>Metodo removeAtPosition</h1><br>
+	 * Método encargado de elimina el elemento en la posición especificada
 	 * 
-	 * @param position
+	 * @param position Posicion
 	 */
 	public void removeAtPosition(int position) {
-		if (position <= 0) { // removes front element
+		if (position <= 0) { // elimina el elemento frontal
 			head = head.getNext();
 			head.setPrevious(tail);
 			tail.setNext(head);
@@ -331,11 +359,10 @@ public class DoublyLinkedList<T> {
 			head.setPrevious(tail);
 
 		} else {
-			// general case
-			// determines the position
+			// caso general determina la posición
 			findPosition(position);
 
-			// removes the element in the specified position
+			// elimina el elemento en la posición especificada
 			location.getPrevious().setNext(location.getNext());
 			location.getNext().setPrevious(location.getPrevious());
 		}
@@ -343,9 +370,11 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * prints the elements of the list in a nicely formated manner in forward order
+	 * <h1>Metodo ShowList</h1><br>
+	 * Método encargado de imprime los elementos de la lista con un formato
+	 * agradable en orden de avance
 	 */
-	public String toString() {
+	public String ShowList() {
 		String item = "List: [ ";
 
 		Node<T> current = head;
@@ -364,13 +393,13 @@ public class DoublyLinkedList<T> {
 	}
 
 	/**
-	 * prints the elements of the list in a nicely formated manner in reverse order
+	 * <h1>Metodo showPrintReverse</h1><br>
+	 * Método encargado de imprime los elementos de la lista en un formato agradable
+	 * en orden inverso
 	 * 
 	 * @return item
 	 */
-	public String printReverse()
-	//
-	{
+	public String showPrintReverse() {
 
 		String item = "List: [ ";
 
